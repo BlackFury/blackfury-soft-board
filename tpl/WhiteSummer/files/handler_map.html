@@ -1,0 +1,51 @@
+<block name="map">
+	<tr>
+		<th>
+			<if content="$map.TYPE == 'textarea'"><br /><br /></if>
+			<label for="<if content="$map.TYPE == 'textarea'">map_textarea_{map.NAME}<else>map_{map.NAME}_id_{map.ITERATOR}</if>">{map.LANG} :</label>
+			<if content="$map.TYPE == 'textarea'">
+				<br /><br />
+				<include name="handler_smilies.html" />
+			</if>
+		</th>
+		<td>
+			<if content="$map.TYPE == 'text'">
+				<input type="text" name="{map.NAME}" value="{map.VALUE}" size="{map.SIZE}" <if content="$map.MAXLENGTH > 0">maxlength="{map.MAXLENGTH}"</if> />
+			<elseif content="$map.TYPE == 'textarea'">
+				<include name="handler_fsbcode.html" />
+				<div>
+					<textarea id="map_textarea_{map.NAME}" name="{map.NAME}" style="height: {map.ROWS}px; width: 99%;" onclick="close_box()">{map.VALUE}</textarea>
+				</div>
+				<div style="margin-top: -15px">
+					<br />
+					&nbsp; &nbsp; <a href="javascript:textEditor['map_textarea_{map.NAME}'].w.change_textarea_size(-5)"><img src="{IMG_TEXTAREA_LESS}" alt="{LG_POST_TEXTAREA_DECREASE}" title="{LG_POST_TEXTAREA_DECREASE}" /></a>
+					<a href="javascript:textEditor['map_textarea_{map.NAME}'].w.change_textarea_size(5)"><img src="{IMG_TEXTAREA_MORE}" alt="{LG_POST_TEXTAREA_INCREASE}" title="{LG_POST_TEXTAREA_INCREASE}" /></a>
+				</div>
+				<input type="hidden" name="map_textarea_{map.NAME}_rows" id="map_textarea_{map.NAME}_rows" value="{map.ROWS}" />
+			<elseif content="$map.TYPE == 'radio'">
+				<block name="map.radio">
+					<input type="radio" name="{map.NAME}" value="{map.radio.ELEM}" <if content="$map.radio.CHECKED">checked="checked" id="map_{map.NAME}_id_{map.ITERATOR}"</if> /> {map.radio.ELEM}
+					<if content="$map.DIRECTION == 'vertical'"><br /><else>&nbsp; &nbsp;</if>
+				</block>
+			<elseif content="$map.TYPE == 'checkbox'">
+				<block name="map.checkbox">
+					<input type="checkbox" name="{map.NAME}[]" value="{map.checkbox.ELEM}" <if content="$map.checkbox.CHECKED">checked="checked" id="map_{map.NAME}_id_{map.ITERATOR}"</if> />{map.checkbox.ELEM}
+					<if content="$map.DIRECTION == 'vertical'"><br /><else>&nbsp; &nbsp;</if>
+				</block>
+				</select>
+			<elseif content="$map.TYPE == 'list'">
+				<select name="{map.NAME}" id="map_{map.NAME}_id_{map.ITERATOR}">
+				<block name="map.list">
+					<option value="{map.list.ELEM}" <if content="$map.list.SELECTED">selected="selected"</if>>{map.list.ELEM}</option>
+				</block>
+				</select>
+			<elseif content="$map.TYPE == 'multilist'">
+				<select name="{map.NAME}[]" multiple="multiple" size="{map.SIZE}" id="map_{map.NAME}_id_{map.ITERATOR}">
+				<block name="map.multilist">
+					<option value="{map.multilist.ELEM}" <if content="$map.multilist.SELECTED">selected="selected"</if>>{map.multilist.ELEM}</option>
+				</block>
+				</select>
+			</if>
+		</td>
+	</tr>
+</block>

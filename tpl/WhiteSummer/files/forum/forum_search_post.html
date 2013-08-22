@@ -1,0 +1,36 @@
+<include name="header.html" />
+
+<switch name="pagination">
+	<div align="right">{PAGINATION}</div>
+	<br style="line-height: 5px" />
+</switch>
+
+<div class="round">
+	<h1>{LG_SEARCH_RESULT} ({TOTAL_RESULT})</h1>
+	<block name="result">
+		<div class="post">
+			<div class="userinfo">
+				<div class="userinfo_box">{result.NICKNAME}<br />{result.DATE}</div>
+			</div>
+			<div class="postcontent">
+				<div class="postheader">
+					<a href="{result.U_CAT}" class="forum">{result.CAT_NAME}</a>
+					<b>&#187;</b> {result.FORUM_NAME}
+					<b>&#187; <a href="{result.U_TOPIC}">{result.TOPIC_NAME}</a></b>
+				</div>
+				<div class="message">{result.CONTENT}</div>
+				<div class="clearer">&nbsp;</div>
+			</div>
+		</div>
+	</block>
+	<blockelse name="result">
+		<div class="content"><div class="error">{LG_SEARCH_NO_RESULT}</div></div>
+	</blockelse>
+</div>
+
+<switch name="pagination">
+	<br style="line-height: 5px" />
+	<div align="right">{PAGINATION}</div>
+</switch>
+
+<include name="footer.html" />
