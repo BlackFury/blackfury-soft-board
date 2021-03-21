@@ -1,4 +1,4 @@
-Fire Soft Board 2
-=================
+BlackFury Soft Board
+====================
 
-Fire Soft Board is an open source forum software written in PHP.
+BlackFury Soft Board is an open source forum software written in PHP.
